@@ -2,8 +2,10 @@
 # airflow DAG에서 사용하는 파이썬 파일
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-from airflow.contrib.operators.ssh_operator import SSHOperator
-from airflow.contrib.hooks import SSHHook
+# from airflow.contrib.operators.ssh_operator import SSHOperator
+# from airflow.contrib.hooks import SSHHook
+from airflow.providers.ssh.operators.ssh import SSHOperator
+from airflow.providers.ssh.hooks.ssh import SSHHook
 from datetime import datetime,timedelta
 from airflow.utils import trigger_rule
 
