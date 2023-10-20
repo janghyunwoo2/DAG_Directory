@@ -49,7 +49,7 @@ dag = DAG('DAG_data_refine',
 t1 = BashOperator(
   task_id = "emr_cluster_create",
   #xcom_push=True,
-  bash_command = """bash ../shell_script/emr_cluster_create.sh {} {}""".format(ip_address, region),
+  bash_command = """bash /opt/airflow/dags/02_Data_Batch_Processing/shell_script/emr_cluster_create.sh {} {}""".format(ip_address, region),
   dag=dag
 )
 
