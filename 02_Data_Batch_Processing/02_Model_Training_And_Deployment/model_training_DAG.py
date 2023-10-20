@@ -47,7 +47,7 @@ dag = DAG('DAG_model_training',
 # EMR 클러스터 생성하는 task
 t1 = BashOperator(
   task_id = "emr_cluster_create",
-  xcom_push=True,
+  #xcom_push=True,
   bash_command = """bash {}/shell_script/emr_cluster_create.sh {} {}""".format(project_home, ip_address, region),
   dag=dag
 )
