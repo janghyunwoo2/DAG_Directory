@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-from airflow.contrib.operators.ssh_operator import SSHOperator
-from airflow.contrib.hooks import SSHHook
+# from airflow.contrib.operators.ssh_operator import SSHOperator
+# from airflow.contrib.hooks import SSHHook
+from airflow.providers.ssh.operators.ssh import SSHOperator
+from airflow.providers.ssh.hooks.ssh import SSHHook
 from datetime import datetime,timedelta
 from airflow.utils import trigger_rule
 
-import iso8601
 import sys, os, re, subprocess
 
 '''하루전 데이터를 처리하기 위해 현재시간에서 하루 뺀 시간'''
