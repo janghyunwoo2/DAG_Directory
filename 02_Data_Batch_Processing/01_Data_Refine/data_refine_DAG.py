@@ -35,7 +35,7 @@ now =  "{}-{}-{}".format(year, month, day)
 ip_address = '172.31.20.78'
 ip_domain = 'ip-172-31-20-78.ap-northeast-2.compute.internal'
 region = 'ap-northeast-2'
-project_home = '02_Data_Batch_Processing'
+project_home = '..'
 
 # SSH 연결을 위한 SSHHook 정의
 sshHook = SSHHook(ssh_conn_id='emr_cluster_conn',remote_host='{}'.format(ip_domain),username='hadoop',password='1234')
@@ -49,7 +49,7 @@ dag = DAG('DAG_data_refine',
 t1 = BashOperator(
   task_id = "emr_cluster_create",
   #xcom_push=True,
-  bash_command = """bash {}/shell_script/emr_cluster_create.sh {} {}""".format(project_home, ip_address, region),
+  bash_command = """bash ../shell_script/emr_cluster_create.sh {} {}""".format(ip_address, region),
   dag=dag
 )
 
@@ -57,7 +57,7 @@ t1 = BashOperator(
 # 확실하지 않지만, SSH 접속을 한번 해두어야 Airflow SSHOperator로 접속이 가능했었다.
 t2 = BashOperator(
   task_id = "emr_ssh_connect",
-  bash_command = """bash {}/shell_script/emr_ssh_connect.sh {} {}""".format(project_home,ip_address, ip_domain),
+  bash_command = """bash ../shell_script/emr_ssh_connect.sh {} {}""".format(ip_address, ip_domain),
   dag=dag
 )
 
@@ -84,7 +84,7 @@ t5 = BashOperator(
   bash_command = """
 export HADOOP_CONF_DIR='/home/ubuntu/project1/hadoop/etc/hadoop-datatransform';
 export YARN_CONF_DIR='/home/ubuntu/project1/hadoop/etc/hadoop-datatransform';
-spark-submit --deploy-mode client --master yarn --num-executors 4 --executor-cores 4 --executor-memory 18G {}/01_Data_Refine/data_refine.py
+spark-submit --deploy-mode client --master yarn --num-executors 4 --executor-cores 4 --executor-memory 18G ./data_refine.py
 """.format(project_home),
   dag=dag
 )
