@@ -1,5 +1,5 @@
 # 생성할 EMR 클러스터 생성하기. 반환값은 생성된 클러스터ID
-ClusterId="`aws emr create-cluster \
+ClusterId="`aws emr create-cluster121212 \
 --auto-scaling-role EMR_AutoScaling_DefaultRole \
 --applications Name=Hadoop Name=Spark Name=Zeppelin \
 --log-uri 's3n://aws-logs-848045215644-ap-northeast-2/elasticmapreduce/' \
