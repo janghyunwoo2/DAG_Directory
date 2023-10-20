@@ -24,7 +24,7 @@ ClusterId="`aws emr create-cluster \
 # c = 1753325b
 # d = d6665f8a
 
-
+echo $ClusterId
 # 위 ClusterId 값은 json이므로 jq로 값을 찾는다.
 ClusterId="$(echo $ClusterId | jq '.ClusterId')"
 
