@@ -35,7 +35,7 @@ now =  "{}-{}-{}".format(year, month, day)
 ip_address = '172.31.20.78'
 ip_domain = 'ip-172-31-20-78.ap-northeast-2.compute.internal'
 region = 'ap-northeast-2'
-project_home = '~/Project/02_Data_Batch_Processing'
+project_home = '02_Data_Batch_Processing'
 
 # SSH 연결을 위한 SSHHook 정의
 sshHook = SSHHook(ssh_conn_id='emr_cluster_conn',remote_host='{}'.format(ip_domain),username='hadoop',password='1234')
